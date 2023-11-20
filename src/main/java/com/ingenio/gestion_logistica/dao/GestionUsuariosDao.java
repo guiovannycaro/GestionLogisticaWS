@@ -59,6 +59,7 @@ public class GestionUsuariosDao implements  GestionUsuariosInterface{
 		String contrasena = null;
 		String sql = "select * from usuarios where usu_correo = "+ usuario +" ";
 		resulSelect = query.executeSelectBd(sql);
+		
 		while (resulSelect.next()) {
 			Usuarios us = new Usuarios();
 			contrasena =	resulSelect.getString("usu_password");

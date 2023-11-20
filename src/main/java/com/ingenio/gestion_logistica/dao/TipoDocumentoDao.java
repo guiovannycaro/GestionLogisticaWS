@@ -14,9 +14,11 @@ public class TipoDocumentoDao implements   TipoDocumentoInterface{
 	ResultSet resulSelect;
 	@Override
 	public List<TipoDocumento> devolverListaTipoDocumento() throws Exception {
+		
 		ArrayList<TipoDocumento> list = new ArrayList<>();
 		String sql = "select * from tipodocumento";
 		resulSelect = query.executeSelectBd(sql);
+		
 		while (resulSelect.next()) {
 			TipoDocumento td = new TipoDocumento();
 			td.setTDOC_ID(resulSelect.getInt("tdoc_id"));
@@ -30,9 +32,11 @@ public class TipoDocumentoDao implements   TipoDocumentoInterface{
 
 	@Override
 	public List<TipoDocumento> devolverTipoDocumentoById(int id) throws Exception {
+		
 		ArrayList<TipoDocumento> list = new ArrayList<>();
 		String sql = "select * from tipodocumento where tdoc_id = "+id+"";
 		resulSelect = query.executeSelectBd(sql);
+		
 		while (resulSelect.next()) {
 			TipoDocumento td = new TipoDocumento();
 			td.setTDOC_ID(resulSelect.getInt("tdoc_id"));
@@ -47,7 +51,19 @@ public class TipoDocumentoDao implements   TipoDocumentoInterface{
 	@Override
 	public TipoDocumento buscarTipoDocumentoPorDato(TipoDocumento datos) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		TipoDocumento list = null ;
+		String sql = "select * from tipodocumento where tdoc_id = "+datos+"";
+		resulSelect = query.executeSelectBd(sql);
+		
+		while (resulSelect.next()) {
+			TipoDocumento td = new TipoDocumento();
+			td.setTDOC_ID(resulSelect.getInt("tdoc_id"));
+			td.setTDOC_NOMBRE(resulSelect.getString("tdoc_nombre"));
+			td.setTDOC_DESCRIPCION(resulSelect.getString("tdoc_descripcion"));
+			
+			list = td;
+		}
+		return list;
 	}
 
 	@Override
@@ -67,6 +83,7 @@ public class TipoDocumentoDao implements   TipoDocumentoInterface{
 
 	@Override
 	public String actualizarTipoDocumento(TipoDocumento tp) throws Exception {
+		
 		String validaIngreso;
 		String sql = "Update   tipodocumento SET "
 				+ "tdoc_nombres = '" + tp.getTDOC_NOMBRE() + "',"

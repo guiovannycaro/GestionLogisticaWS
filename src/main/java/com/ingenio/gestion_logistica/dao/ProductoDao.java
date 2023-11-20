@@ -20,6 +20,7 @@ public class ProductoDao implements ProductoInterface{
 		ArrayList<Productos> list = new ArrayList<>();
 		String sql = "select * from producto";
 		resulSelect = query.executeSelectBd(sql);
+	
 		while (resulSelect.next()) {
 			Productos pr = new Productos();
 			pr.setPRO_ID(resulSelect.getInt("prod_nombre"));
@@ -39,6 +40,7 @@ public class ProductoDao implements ProductoInterface{
 		ArrayList<Productos> list = new ArrayList<>();
 		String sql = "select * from producto where prod_id = "+ id +"";
 		resulSelect = query.executeSelectBd(sql);
+		
 		while (resulSelect.next()) {
 			Productos pr = new Productos();
 			pr.setPRO_ID(resulSelect.getInt("prod_nombre"));
